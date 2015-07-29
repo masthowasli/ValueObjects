@@ -4,7 +4,9 @@
 [![alt text][2]][1]
 
 
-Collection of standard value objects
+Collection of standard value objects.
+
+THIS IS VERA ALPHA and to be enhanced int he next time...
 
 
 [1]: https://travis-ci.org/masthowasli/ValueObjects
