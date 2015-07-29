@@ -11,4 +11,4 @@ matrix:
     allow_failures:
         - php: hhvm
 
-install: composer selfupdate && composer install --no-dev
+install: composer selfupdate && composer install
