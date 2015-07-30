@@ -1,9 +1,19 @@
 <?php
 /**
- * Created by PhpStorm.
- * User: ts
- * Date: 30.07.15
- * Time: 20:14
+ * File of the Integer class
+ *
+ * For the full copyright and license information, please view the LICENSE
+ * file that was distributed with this source code.
+ *
+ * PHP version 5.3.3
+ *
+ * @category   Masthowasli
+ * @package    ValueObjects
+ * @subpackage Number
+ * @author     Thomas Sliwa <ts@unfinished.dyndns.org>
+ * @copyright  2015 - Thomas Sliwa
+ * @license    http://opensource.org/licenses/MIT MIT
+ * @link       https://github.com/masthowasli/ValueObjects
  */
 
 namespace Masthowasli\ValueObject\Number;
@@ -12,6 +22,16 @@ use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
 use Masthowasli\ValueObject\Number\Number;
 
+/**
+ * Class defining Integers
+ *
+ * @category   Masthowasli
+ * @package    ValueObjects
+ * @subpackage Number
+ * @author     Thomas Sliwa <ts@unfinished.dyndns.org>
+ * @license    http://opensource.org/licenses/MIT MIT
+ * @link       https://github.com/masthowasli/ValueObjects
+ */
 class Integer implements Number
 {
     /**
@@ -24,6 +44,11 @@ class Integer implements Number
         $this->guardValueIsInteger($value);
 
         $this->value = $value;
+    }
+
+    public function add(Integer $other)
+    {
+        return new Integer($this->value + $other->value);
     }
 
     /**
@@ -55,7 +80,7 @@ class Integer implements Number
      *
      * @param Equatable $valueObject The instance to check against
      *
-     * @return boolean Whether the twon instances are equal
+     * @return boolean Whether the two instances are equal
      */
     public function equals(Equatable $valueObject)
     {

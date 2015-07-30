@@ -99,4 +99,16 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(0, $this->integer->compareTo(new Integer(1)));
     }
+
+    public function testCompareToThrowsAnExceptionForNonIntegerComparableInstance()
+    {
+        $mock = $this->getMock('Masthowasli\ValueObject\Comparable');
+        $this->setExpectedException('\InvalidArgumentException');
+        $this->assertEquals(0, $this->integer->compareTo($mock));
+    }
+
+    public function testAddition()
+    {
+        $this->assertEquals(new Integer(2), $this->integer->add(new Integer(1)));
+    }
 }
