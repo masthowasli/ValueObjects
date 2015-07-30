@@ -33,4 +33,6 @@ use Masthowasli\ValueObject\Monetary\Currency;
 class Eur extends Currency
 {
     protected $iso4217 = 'EUR';
+
+    protected $symbol = '€';
 }

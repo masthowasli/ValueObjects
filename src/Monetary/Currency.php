@@ -45,4 +45,9 @@ abstract class Currency implements Equatable
     {
         return $valueObject instanceof static;
     }
+
+    public function __toString()
+    {
+        return $this->symbol;
+    }
 }
