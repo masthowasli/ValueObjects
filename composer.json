@@ -23,6 +23,5 @@
       "Masthowasli\\ValueObject\\": "src",
       "Masthowasli\\ValueObject\\Test\\": "test/unit"
     }
-  },
-  "target-dir": "Masthowasli/ValueObject"
+  }
 }
