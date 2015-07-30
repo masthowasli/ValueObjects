@@ -34,9 +34,25 @@ use Masthowasli\ValueObject\Equatable;
 class Money implements Comparable, Equatable
 {
     /**
-     * @var integer the monetary integer value
+     * @var integer The monetary integer value
      */
     private $value;
+
+    /**
+     * @var Currency The currency of the monetary value
+     */
+    private $currency;
+
+    /**
+     * @param integer  $value    The monetary value
+     * @param Currency $currency The currency
+     */
+    public function __construct($value, Currency $currency)
+    {
+        $this->guardValueIsInteger($value);
+        $this->value = $value;
+        $this->currency = $currency;
+    }
 
     /**
      * Whether the instance is lower, equal or greater than the given one
@@ -47,7 +63,19 @@ class Money implements Comparable, Equatable
      */
     public function compareTo(Comparable $valueObject)
     {
-        // TODO: Implement compareTo() method.
+        if (!$valueObject instanceof Money
+            || !$this->currency->equals($valueObject->currency)
+        ) {
+            throw new \InvalidArgumentException(
+                'You can only compare Money instances one with another'
+            );
+        }
+
+        if ($this->value === $valueObject->value) {
+            return 0;
+        }
+
+        return $this->value < $valueObject->value ? -1 : 1;
     }
 
     /**
@@ -61,6 +89,15 @@ class Money implements Comparable, Equatable
      */
     public function equals(Equatable $valueObject)
     {
-        // TODO: Implement equals() method.
+        return $valueObject instanceof Money
+            && $this->currency->equals($valueObject->currency)
+            && $this->value === $valueObject->value;
+    }
+
+    private function guardValueIsInteger($value)
+    {
+        if (!\is_int($value)) {
+            throw new \InvalidArgumentException('The value must be of type integer');
+        }
     }
 }

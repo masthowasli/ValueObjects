@@ -52,6 +52,7 @@ class EurTest extends \PHPUnit_Framework_TestCase
 
     public function testEqualsReturnsFalse()
     {
-        $this->markTestSkipped('later');
+        $mock = $this->getMock('Masthowasli\ValueObject\Monetary\Currency');
+        $this->assertFalse($this->currency->equals($mock));
     }
 }
