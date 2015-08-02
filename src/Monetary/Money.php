@@ -90,4 +90,15 @@ class Money implements Comparable, Equatable
             && $this->currency->equals($valueObject->currency)
             && $this->value->equals($valueObject->value);
     }
+
+    public function add(Money $other)
+    {
+        if (!$this->currency->equals($other->currency)) {
+            throw new \InvalidArgumentException(
+                'Only monetary values with the same Currency can be added'
+            );
+        }
+
+        return new Money($this->value->add($other->value), $this->currency);
+    }
 }

@@ -90,4 +90,17 @@ class MoneyTest extends \PHPUnit_Framework_TestCase
         $this->setExpectedException('\InvalidArgumentException');
         $this->assertEquals(0, $this->money->compareTo($mock));
     }
+
+    public function testAddSuccess()
+    {
+        $this->assertEquals(new Money(new Integer(1000), new Eur()), $this->money->add($this->money));
+    }
+
+    public function testAddThrowsAnInvalidArgumentExceptionForDifferentCurrencies()
+    {
+        $this->setExpectedException('\InvalidArgumentException');
+        $mock = $this->getMock('Masthowasli\ValueObject\Monetary\Currency');
+
+        $this->money->add(new Money(new Integer(500), $mock));
+    }
 }
