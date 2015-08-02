@@ -1,7 +1,7 @@
 # ValueObjects
 
 ## Status
-[![alt text][2]][1]
+[![Travis CI Unit Tests][2]][1]
 [![Scrutinizer Code Quality](https://scrutinizer-ci.com/g/masthowasli/ValueObjects/badges/quality-score.png?b=master)](https://scrutinizer-ci.com/g/masthowasli/ValueObjects/?branch=master)
 [![SensioLabsInsight](https://insight.sensiolabs.com/projects/02bedf34-7913-4e3f-9975-58f63c37794b/mini.png)](https://insight.sensiolabs.com/projects/02bedf34-7913-4e3f-9975-58f63c37794b)
 
