@@ -20,7 +20,6 @@ namespace Masthowasli\ValueObject\Number;
 
 use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
-use Masthowasli\ValueObject\Number\Number;
 
 /**
  * Class defining Integers
@@ -39,6 +38,11 @@ class Integer implements Number
      */
     private $value;
 
+    /**
+     * Instantiates an Integer
+     *
+     * @param $value Integer The value to represent
+     */
     public function __construct($value)
     {
         $this->guardValueIsInteger($value);
@@ -46,9 +50,28 @@ class Integer implements Number
         $this->value = $value;
     }
 
+    /**
+     * Performs an addition of the given Integer with the instance
+     *
+     * @param $other Integer The Integer value object to add
+     *
+     * @return Integer The value object representing the added value
+     */
     public function add(Integer $other)
     {
         return new Integer($this->value + $other->value);
+    }
+
+    /**
+     * Performs a subtraction of the given Integer with the instance
+     *
+     * @param $other Integer The Integer value object to subtract
+     *
+     * @return Integer The value object representing the subtracted value
+     */
+    public function subtract(Integer $other)
+    {
+        return new Integer($this->value - $other->value);
     }
 
     /**
