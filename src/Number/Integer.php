@@ -65,7 +65,7 @@ class Integer implements Number
     /**
      * Performs a subtraction of the given Integer with the instance
      *
-     * @param $other Integer The Integer value object to subtract
+     * @param Integer $other Integer The Integer value object to subtract
      *
      * @return Integer The value object representing the subtracted value
      */

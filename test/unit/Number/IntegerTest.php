@@ -32,8 +32,14 @@ use Masthowasli\ValueObject\Number\Integer;
  */
 class IntegerTest extends \PHPUnit_Framework_TestCase
 {
+    /**
+     * @var Integer
+     */
     private $integer;
 
+    /**
+     * @{inheritdoc}
+     */
     protected function setup()
     {
         $this->integer = new Integer(1);
@@ -47,21 +53,21 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
         );
     }
 
-    public function testContructionFailsWithFloat()
+    public function testConstructionFailsWithFloat()
     {
         $this->setExpectedException('\InvalidArgumentException');
 
         new Integer(1.0);
     }
 
-    public function testContructionFailsWithString()
+    public function testConstructionFailsWithString()
     {
         $this->setExpectedException('\InvalidArgumentException');
 
         new Integer("1");
     }
 
-    public function testContructionFailsWithBoolean()
+    public function testConstructionFailsWithBoolean()
     {
         $this->setExpectedException('\InvalidArgumentException');
 
@@ -95,7 +101,7 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
         $this->assertGreaterThan(0, $this->integer->compareTo(new Integer(0)));
     }
 
-    public function testCompareToReturnsZoreForEqualArgumentValue()
+    public function testCompareToReturnsZeroForEqualArgumentValue()
     {
         $this->assertEquals(0, $this->integer->compareTo(new Integer(1)));
     }

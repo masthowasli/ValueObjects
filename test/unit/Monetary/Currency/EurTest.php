@@ -38,6 +38,9 @@ class EurTest extends \PHPUnit_Framework_TestCase
      */
     private $currency;
 
+    /**
+     * @{inheritdoc}
+     */
     protected function setup()
     {
         $this->currency = new Eur();
