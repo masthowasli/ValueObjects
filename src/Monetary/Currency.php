@@ -33,6 +33,16 @@ use Masthowasli\ValueObject\Equatable;
 abstract class Currency implements Equatable
 {
     /**
+     * @var string The ISO 4217 code
+     */
+    protected $iso4217;
+
+    /**
+     * @var string The currency symbol
+     */
+    protected $symbol;
+
+    /**
      * Whether the instance equals the given instance
      *
      * A type check must be performed in an implementing class

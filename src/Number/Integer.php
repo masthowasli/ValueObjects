@@ -41,7 +41,7 @@ class Integer implements Number
     /**
      * Instantiates an Integer
      *
-     * @param $value Integer The value to represent
+     * @param int $value The value to represent
      */
     public function __construct($value)
     {
@@ -53,7 +53,7 @@ class Integer implements Number
     /**
      * Performs an addition of the given Integer with the instance
      *
-     * @param $other Integer The Integer value object to add
+     * @param Integer $other The Integer value object to add
      *
      * @return Integer The value object representing the added value
      */
@@ -65,13 +65,37 @@ class Integer implements Number
     /**
      * Performs a subtraction of the given Integer with the instance
      *
-     * @param Integer $other Integer The Integer value object to subtract
+     * @param Integer $other The Integer value object to subtract
      *
      * @return Integer The value object representing the subtracted value
      */
     public function subtract(Integer $other)
     {
         return new Integer($this->value - $other->value);
+    }
+
+    /**
+     * Performs a multiplication of the given Integer with the instance
+     *
+     * @param Integer $other The Integer value object to multiply
+     *
+     * @return Integer The value object representing the multiplied value
+     */
+    public function multiply(Integer $other)
+    {
+        return new Integer($this->value * $other->value);
+    }
+
+    /**
+     * Performs an integer division of the given Integer with the instance
+     *
+     * @param Integer $other The Integer value object to devide by
+     *
+     * @return Integer The value object representing the integer quotient
+     */
+    public function divide(Integer $other)
+    {
+        return new Integer((int) floor($this->value / $other->value));
     }
 
     /**

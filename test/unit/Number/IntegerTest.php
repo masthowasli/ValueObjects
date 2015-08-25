@@ -122,4 +122,16 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
     {
         $this->assertEquals(new Integer(0), $this->integer->subtract(new Integer(1)));
     }
+
+    public function testMultiplication()
+    {
+        $this->assertEquals(new Integer(5), $this->integer->multiply(new Integer(5)));
+    }
+
+    public function testDivision()
+    {
+        $ten = new Integer(10);
+        $this->assertEquals(new Integer(2), $ten->divide(new Integer(5)));
+        $this->assertEquals(new Integer(3), $ten->divide(new Integer(3)));
+    }
 }
