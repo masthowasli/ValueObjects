@@ -134,4 +134,17 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new Integer(2), $ten->divide(new Integer(5)));
         $this->assertEquals(new Integer(3), $ten->divide(new Integer(3)));
     }
+
+    public function testRemainder()
+    {
+        $seventeen = new Integer(17);
+        $this->assertEquals(new Integer(7), $seventeen->remainder(new Integer(10)));
+        $this->assertEquals(new Integer(7), $seventeen->remainder(new Integer(10)));
+        $this->assertEquals(new Integer(0), $seventeen->remainder(new Integer(17)));
+        $this->assertEquals(new Integer(1), $seventeen->remainder(new Integer(16)));
+        $this->assertEquals(new Integer(2), $seventeen->remainder(new Integer(15)));
+        $this->assertEquals(new Integer(3), $seventeen->remainder(new Integer(14)));
+        $this->assertEquals(new Integer(4), $seventeen->remainder(new Integer(13)));
+        $this->assertEquals(new Integer(5), $seventeen->remainder(new Integer(12)));
+    }
 }
