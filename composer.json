@@ -3,15 +3,20 @@
   "type": "library",
   "description": "PHP Component - Basic value objects delivering a standard abstraction",
   "keywords": ["component", "value object"],
-  "homepage": "https://masthowasli.github.com",
+  "homepage": "https://github.com/masthowasliValueObjects",
   "license": "MIT",
   "minimum-stability": "stable",
   "authors": [
     {
       "name": "Thomas Sliwa",
-      "email": "ts@unfinished.dyndns.org"
+      "email": "ts@unfinished.dyndns.org",
+      "homepage": "https://masthowasli.github.com/"
     }
   ],
+  "support": {
+    "issues": "https://github.com/masthowasliValueObjects/issues",
+    "source": "https://github.com/masthowasliValueObjects"
+  },
   "require": {
     "php": ">=5.3.3"
   },
