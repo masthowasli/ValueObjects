@@ -91,6 +91,15 @@ final class Money implements Comparable, Equatable
             && $this->value->equals($valueObject->value);
     }
 
+    /**
+     * Adds the given monetary value to this one
+     *
+     * @param Money $other The monetary value to add
+     *
+     * @throws \InvalidArgumentException On different instanceof or currency
+     *
+     * @return Money The monetary representation of the addition
+     */
     public function add(Money $other)
     {
         if (!$this->currency->equals($other->currency)) {
