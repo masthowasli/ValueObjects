@@ -99,6 +99,18 @@ class Integer implements Number
     }
 
     /**
+     * Performs the remainder calculation of the integer division of the given Integer with the instance
+     *
+     * @param Integer $other The Integer value object to get the division remainder from
+     *
+     * @return Integer The remainder of the integer division
+     */
+    public function remainder(Integer $other)
+    {
+        return new Integer($this->value % $other->value);
+    }
+
+    /**
      * Whether the instance is lower, equal or greater than the given one
      *
      * @param Comparable $valueObject The instance to compare to
