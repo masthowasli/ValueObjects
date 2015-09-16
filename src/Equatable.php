@@ -35,7 +35,7 @@ interface Equatable
      *
      * @param Equatable $valueObject The instance to check against
      *
-     * @return boolean Whether the twon instances are equal
+     * @return boolean Whether the two instances are equal
      */
     public function equals(Equatable $valueObject);
 }

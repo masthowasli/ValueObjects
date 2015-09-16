@@ -40,6 +40,9 @@ class MoneyTest extends \PHPUnit_Framework_TestCase
      */
     private $money;
 
+    /**
+     * @{inheritDoc}
+     */
     protected function setup()
     {
         $this->money = new Money(new Integer(500), new Eur());
@@ -64,7 +67,7 @@ class MoneyTest extends \PHPUnit_Framework_TestCase
         $this->assertFalse($this->money->equals(new Money(new Integer(500), $mock)));
     }
 
-    public function testEqualsReturnsFalseForDifferentvalues()
+    public function testEqualsReturnsFalseForDifferentValues()
     {
         $this->assertFalse($this->money->equals(new Money(new Integer(100), new Eur())));
     }

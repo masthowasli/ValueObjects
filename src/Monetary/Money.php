@@ -32,7 +32,7 @@ use Masthowasli\ValueObject\Number\Integer;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-class Money implements Comparable, Equatable
+final class Money implements Comparable, Equatable
 {
     /**
      * @var Integer The monetary integer value
@@ -45,7 +45,7 @@ class Money implements Comparable, Equatable
     private $currency;
 
     /**
-     * @param Integer  $value    The monetary value
+     * @param \Masthowasli\ValueObject\Number\Integer  $value    The monetary value
      * @param Currency $currency The currency
      */
     public function __construct(Integer $value, Currency $currency)

@@ -36,7 +36,6 @@ abstract class Currency implements Equatable
      * @var string The ISO 4217 code
      */
     protected $iso4217;
-
     /**
      * @var string The currency symbol
      */
@@ -49,7 +48,7 @@ abstract class Currency implements Equatable
      *
      * @param Equatable $valueObject The instance to check against
      *
-     * @return boolean Whether the twon instances are equal
+     * @return boolean Whether the two instances are equal
      */
     public function equals(Equatable $valueObject)
     {

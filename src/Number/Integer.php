@@ -31,7 +31,7 @@ use Masthowasli\ValueObject\Equatable;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-class Integer implements Number
+final class Integer implements Number
 {
     /**
      * @var integer The encapsulated value
@@ -53,7 +53,7 @@ class Integer implements Number
     /**
      * Performs an addition of the given Integer with the instance
      *
-     * @param Integer $other The Integer value object to add
+     * @param \Masthowasli\ValueObject\Number\Integer $other The Integer value object to add
      *
      * @return Integer The value object representing the added value
      */
@@ -65,7 +65,7 @@ class Integer implements Number
     /**
      * Performs a subtraction of the given Integer with the instance
      *
-     * @param Integer $other The Integer value object to subtract
+     * @param \Masthowasli\ValueObject\Number\Integer $other The Integer value object to subtract
      *
      * @return Integer The value object representing the subtracted value
      */
@@ -77,7 +77,7 @@ class Integer implements Number
     /**
      * Performs a multiplication of the given Integer with the instance
      *
-     * @param Integer $other The Integer value object to multiply
+     * @param \Masthowasli\ValueObject\Number\Integer $other The Integer value object to multiply
      *
      * @return Integer The value object representing the multiplied value
      */
@@ -89,7 +89,7 @@ class Integer implements Number
     /**
      * Performs an integer division of the given Integer with the instance
      *
-     * @param Integer $other The Integer value object to devide by
+     * @param \Masthowasli\ValueObject\Number\Integer $other The Integer value object to divide by
      *
      * @return Integer The value object representing the integer quotient
      */
@@ -101,7 +101,7 @@ class Integer implements Number
     /**
      * Performs the remainder calculation of the integer division of the given Integer with the instance
      *
-     * @param Integer $other The Integer value object to get the division remainder from
+     * @param \Masthowasli\ValueObject\Number\Integer $other The Integer value object to get the division remainder from
      *
      * @return Integer The remainder of the integer division
      */
@@ -122,7 +122,7 @@ class Integer implements Number
     public function compareTo(Comparable $valueObject)
     {
         if (!$valueObject instanceof static) {
-            throw new \InvalidArgumentException('Only Integers can be compared to Intergers');
+            throw new \InvalidArgumentException('Only Integers can be compared to Integers');
         }
 
         if ($this->value === $valueObject->value) {

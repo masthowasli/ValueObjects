@@ -30,7 +30,7 @@ use Masthowasli\ValueObject\Monetary\Currency;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-class Eur extends Currency
+final class Eur extends Currency
 {
     protected $iso4217 = 'EUR';
 
