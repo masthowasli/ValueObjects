@@ -66,14 +66,13 @@ final class Money implements Comparable, Equatable, Addition
      */
     public function compareTo(Comparable $other)
     {
-        if (!$other instanceof Money
-            || !$this->currency->equals($other->currency)
-        ) {
-            throw new \InvalidArgumentException(
-                'You can only compare Money instances one with another'
-            );
+        if ($this->isComparable($other)) {
+            return $this->value->compareTo($other->value);
         }
-        return $this->value->compareTo($other->value);
+
+        throw new \InvalidArgumentException(
+            'You can only compare Money instances one with another'
+        );
     }
 
     /**
@@ -103,14 +102,18 @@ final class Money implements Comparable, Equatable, Addition
      */
     public function add(Addition $other)
     {
-        if (!$other instanceof Money
-            || !$this->currency->equals($other->currency)
-        ) {
-            throw new \InvalidArgumentException(
-                'Only monetary values with the same Currency can be added'
-            );
+        if ($this->isComparable($other)) {
+            return new Money($this->value->add($other->value), $this->currency);
         }
 
-        return new Money($this->value->add($other->value), $this->currency);
+        throw new \InvalidArgumentException(
+            'Only monetary values with the same Currency can be added'
+        );
+    }
+
+    private function isComparable($other)
+    {
+        return $other instanceof Money
+            && $this->currency->equals($other->currency);
     }
 }
