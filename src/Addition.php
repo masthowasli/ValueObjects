@@ -33,7 +33,7 @@ interface Addition
      *
      * @param Addition $valueObject The instance to compare to
      *
-     * @return integer <0 when lower, 0 on equality, >0 when greater
+     * @return Addition <0 when lower, 0 on equality, >0 when greater
      */
     public function add(Addition $valueObject);
 }
