@@ -159,7 +159,7 @@ final class Integer implements Number
     {
         if (!\is_int($value)) {
             throw new \InvalidArgumentException(
-                'An integer instance must be constructed with a scalar int value'
+                'An Integer instance must be constructed with a scalar int value'
             );
         }
     }

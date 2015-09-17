@@ -9,15 +9,5 @@ Collection of standard value objects.
 
 THIS IS VERY ALPHA and to be enhanced in the next time...
 
-## Decisions to make
-
-At the moment I'm not sure in which direction these very basic (... or maybe not so basic) classes should go.
-
-Go the Java way with static methods like Integer::fromFloat or Integer::fromString or not?
-
-Please help me to evaluate the on going path and direction by either pull requests or issues.
-
-__Thanks__
-
 [1]: https://travis-ci.org/masthowasli/ValueObjects
 [2]: https://api.travis-ci.org/masthowasli/ValueObjects.svg (build status)

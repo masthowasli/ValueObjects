@@ -21,7 +21,7 @@ namespace Masthowasli\ValueObject\Test\Number;
 use Masthowasli\ValueObject\Number\Integer;
 
 /**
- * Tests the Money value object
+ * Tests the Integer value object
  *
  * @category   Masthowasli
  * @package    ValueObject
