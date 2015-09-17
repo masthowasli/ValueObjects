@@ -20,6 +20,7 @@ namespace Masthowasli\ValueObject\Number;
 
 use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
+use Masthowasli\ValueObject\Addition;
 
 /**
  * Class defining Integers
@@ -53,12 +54,16 @@ final class Integer implements Number
     /**
      * Performs an addition of the given Integer with the instance
      *
-     * @param \Masthowasli\ValueObject\Number\Integer $other The Integer value object to add
+     * @param \Masthowasli\ValueObject\Addition $other The Integer value object to add
      *
      * @return Integer The value object representing the added value
      */
-    public function add(Integer $other)
+    public function add(Addition $other)
     {
+        if (!$other instanceof Integer) {
+            throw new \InvalidArgumentException('Only Integer objects may be added');
+        }
+
         return new Integer($this->value + $other->value);
     }
 

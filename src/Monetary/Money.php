@@ -18,6 +18,7 @@
 
 namespace Masthowasli\ValueObject\Monetary;
 
+use Masthowasli\ValueObject\Addition;
 use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
 use Masthowasli\ValueObject\Number\Integer;
@@ -32,7 +33,7 @@ use Masthowasli\ValueObject\Number\Integer;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-final class Money implements Comparable, Equatable
+final class Money implements Comparable, Equatable, Addition
 {
     /**
      * @var Integer The monetary integer value
@@ -57,22 +58,22 @@ final class Money implements Comparable, Equatable
     /**
      * Whether the instance is lower, equal or greater than the given one
      *
-     * @param Comparable $valueObject The instance to compare to
+     * @param Comparable $other The instance to compare to
      *
      * @throws \InvalidArgumentException On different instanceof or currency
      *
      * @return integer <0 when lower, 0 on equality, >0 when greater
      */
-    public function compareTo(Comparable $valueObject)
+    public function compareTo(Comparable $other)
     {
-        if (!$valueObject instanceof Money
-            || !$this->currency->equals($valueObject->currency)
+        if (!$other instanceof Money
+            || !$this->currency->equals($other->currency)
         ) {
             throw new \InvalidArgumentException(
                 'You can only compare Money instances one with another'
             );
         }
-        return $this->value->compareTo($valueObject->value);
+        return $this->value->compareTo($other->value);
     }
 
     /**
@@ -94,15 +95,17 @@ final class Money implements Comparable, Equatable
     /**
      * Adds the given monetary value to this one
      *
-     * @param Money $other The monetary value to add
+     * @param Addition $other The monetary value to add
      *
      * @throws \InvalidArgumentException On different instanceof or currency
      *
      * @return Money The monetary representation of the addition
      */
-    public function add(Money $other)
+    public function add(Addition $other)
     {
-        if (!$this->currency->equals($other->currency)) {
+        if ($other instanceof Money
+            && !$this->currency->equals($other->currency)
+        ) {
             throw new \InvalidArgumentException(
                 'Only monetary values with the same Currency can be added'
             );

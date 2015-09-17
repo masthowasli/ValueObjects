@@ -1,6 +1,6 @@
 <?php
 /**
- * File of the Number interface
+ * File of the Addition interface
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -9,29 +9,31 @@
  *
  * @category   Masthowasli
  * @package    ValueObjects
- * @subpackage Number
  * @author     Thomas Sliwa <ts@unfinished.dyndns.org>
  * @copyright  2015 - Thomas Sliwa
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
 
-namespace Masthowasli\ValueObject\Number;
-
-use Masthowasli\ValueObject\Comparable;
-use Masthowasli\ValueObject\Equatable;
-use Masthowasli\ValueObject\Addition;
+namespace Masthowasli\ValueObject;
 
 /**
- * Interface to define a number
+ * Interface to define the add operation
  *
  * @category   Masthowasli
  * @package    ValueObjects
- * @subpackage Number
  * @author     Thomas Sliwa <ts@unfinished.dyndns.org>
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-interface Number extends Comparable, Equatable, Addition
+interface Addition
 {
+    /**
+     * Whether the instance is lower, equal or greater than the given one
+     *
+     * @param Addition $valueObject The instance to compare to
+     *
+     * @return integer <0 when lower, 0 on equality, >0 when greater
+     */
+    public function add(Addition $valueObject);
 }
