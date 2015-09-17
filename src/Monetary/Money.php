@@ -103,8 +103,8 @@ final class Money implements Comparable, Equatable, Addition
      */
     public function add(Addition $other)
     {
-        if ($other instanceof Money
-            && !$this->currency->equals($other->currency)
+        if (!$other instanceof Money
+            || !$this->currency->equals($other->currency)
         ) {
             throw new \InvalidArgumentException(
                 'Only monetary values with the same Currency can be added'
