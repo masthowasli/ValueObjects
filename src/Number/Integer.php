@@ -21,6 +21,8 @@ namespace Masthowasli\ValueObject\Number;
 use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
 use Masthowasli\ValueObject\Addition;
+use Masthowasli\ValueObject\Subtraction;
+use Masthowasli\ValueObject\Multiplication;
 
 /**
  * Class defining Integers
@@ -56,6 +58,8 @@ final class Integer implements Number
      *
      * @param \Masthowasli\ValueObject\Addition $other The Integer value object to add
      *
+     * @throws \InvalidArgumentException
+     *
      * @return Integer The value object representing the added value
      */
     public function add(Addition $other)
@@ -70,24 +74,36 @@ final class Integer implements Number
     /**
      * Performs a subtraction of the given Integer with the instance
      *
-     * @param \Masthowasli\ValueObject\Number\Integer $other The Integer value object to subtract
+     * @param \Masthowasli\ValueObject\Subtraction $other The Integer value object to subtract
+     *
+     * @throws \InvalidArgumentException
      *
      * @return Integer The value object representing the subtracted value
      */
-    public function subtract(Integer $other)
+    public function subtract(Subtraction $other)
     {
+        if (!$other instanceof Integer) {
+            throw new \InvalidArgumentException('Only Integer objects may be subtractred');
+        }
+
         return new Integer($this->value - $other->value);
     }
 
     /**
      * Performs a multiplication of the given Integer with the instance
      *
-     * @param \Masthowasli\ValueObject\Number\Integer $other The Integer value object to multiply
+     * @param \Masthowasli\ValueObject\Multiplication $other The Integer value object to multiply
+     *
+     * @throws \InvalidArgumentException
      *
      * @return Integer The value object representing the multiplied value
      */
-    public function multiply(Integer $other)
+    public function multiply(Multiplication $other)
     {
+        if (!$other instanceof Integer) {
+            throw new \InvalidArgumentException('Only Integer objects may be multiplied');
+        }
+
         return new Integer($this->value * $other->value);
     }
 

@@ -130,9 +130,23 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
         $this->assertEquals(new Integer(0), $this->integer->subtract(new Integer(1)));
     }
 
+    public function testSubtractionThrowsExceptionForNonIntegerArgument()
+    {
+        $mock = $this->getMock('Masthowasli\ValueObject\Subtraction');
+        $this->setExpectedException('\InvalidArgumentException');
+        $this->assertEquals(new Integer(2), $this->integer->subtract($mock));
+    }
+
     public function testMultiplication()
     {
         $this->assertEquals(new Integer(5), $this->integer->multiply(new Integer(5)));
+    }
+
+    public function testMultiplicationThrowsExceptionForNonIntegerArgument()
+    {
+        $mock = $this->getMock('Masthowasli\ValueObject\Multiplication');
+        $this->setExpectedException('\InvalidArgumentException');
+        $this->assertEquals(new Integer(2), $this->integer->multiply($mock));
     }
 
     public function testDivision()

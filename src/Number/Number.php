@@ -21,6 +21,8 @@ namespace Masthowasli\ValueObject\Number;
 use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
 use Masthowasli\ValueObject\Addition;
+use Masthowasli\ValueObject\Subtraction;
+use Masthowasli\ValueObject\Multiplication;
 
 /**
  * Interface to define a number
@@ -32,6 +34,6 @@ use Masthowasli\ValueObject\Addition;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-interface Number extends Comparable, Equatable, Addition
+interface Number extends Comparable, Equatable, Addition, Subtraction, Multiplication
 {
 }
