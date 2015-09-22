@@ -33,7 +33,7 @@ use Masthowasli\ValueObject\Number\Integer;
 class IntegerTest extends \PHPUnit_Framework_TestCase
 {
     /**
-     * @var Integer
+     * @var \Masthowasli\ValueObject\Number\Integer
      */
     private $integer;
 
@@ -47,7 +47,7 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
 
     public function testValidConstruction()
     {
-        $this->assertInstanceOf(
+        static::assertInstanceOf(
             'Masthowasli\ValueObject\Number\Integer',
             $this->integer
         );
@@ -55,117 +55,185 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
 
     public function testConstructionFailsWithFloat()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        static::setExpectedException('\InvalidArgumentException');
 
         new Integer(1.0);
     }
 
     public function testConstructionFailsWithString()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        static::setExpectedException('\InvalidArgumentException');
 
-        new Integer("1");
+        new Integer('1');
     }
 
     public function testConstructionFailsWithBoolean()
     {
-        $this->setExpectedException('\InvalidArgumentException');
+        static::setExpectedException('\InvalidArgumentException');
 
         new Integer(true);
     }
 
     public function testEqualsReturnsTrue()
     {
-        $this->assertTrue($this->integer->equals(new Integer(1)));
+        static::assertTrue($this->integer->equals(new Integer(1)));
     }
 
     public function testEqualsReturnsFalseForNonMoneyArgument()
     {
-        $mock = $this->getMock('Masthowasli\ValueObject\Number\Number');
+        /** @var \Masthowasli\ValueObject\Number\Number $mock */
+        $mock = static::getMock('Masthowasli\ValueObject\Number\Number');
 
-        $this->assertFalse($this->integer->equals($mock));
+        static::assertFalse($this->integer->equals($mock));
     }
 
-    public function testEqualsReturnsFalseForDifferentvalues()
+    public function testEqualsReturnsFalseForDifferentValues()
     {
-        $this->assertFalse($this->integer->equals(new Integer(2)));
+        static::assertFalse($this->integer->equals(new Integer(2)));
     }
 
     public function testCompareToReturnsNegativeForLargerArgumentValue()
     {
-        $this->assertLessThan(0, $this->integer->compareTo(new Integer(2)));
+        static::assertLessThan(0, $this->integer->compareTo(new Integer(2)));
     }
 
     public function testCompareToReturnsPositiveForSmallerArgumentValue()
     {
-        $this->assertGreaterThan(0, $this->integer->compareTo(new Integer(0)));
+        static::assertGreaterThan(0, $this->integer->compareTo(new Integer(0)));
     }
 
     public function testCompareToReturnsZeroForEqualArgumentValue()
     {
-        $this->assertEquals(0, $this->integer->compareTo(new Integer(1)));
+        static::assertEquals(0, $this->integer->compareTo(new Integer(1)));
     }
 
     public function testCompareToThrowsAnExceptionForNonIntegerComparableInstance()
     {
-        $mock = $this->getMock('Masthowasli\ValueObject\Comparable');
-        $this->setExpectedException('\InvalidArgumentException');
-        $this->assertEquals(0, $this->integer->compareTo($mock));
+        /** @var \Masthowasli\ValueObject\Comparable $mock */
+        $mock = static::getMock('Masthowasli\ValueObject\Comparable');
+
+        static::setExpectedException('\InvalidArgumentException');
+        static::assertEquals(0, $this->integer->compareTo($mock));
     }
 
     public function testAddition()
     {
-        $this->assertEquals(new Integer(2), $this->integer->add(new Integer(1)));
+        static::assertEquals(new Integer(2), $this->integer->add(new Integer(1)));
     }
 
     public function testAdditionThrowsExceptionForNonIntegerArgument()
     {
-        $mock = $this->getMock('Masthowasli\ValueObject\Addition');
-        $this->setExpectedException('\InvalidArgumentException');
-        $this->assertEquals(new Integer(2), $this->integer->add($mock));
+        /** @var \Masthowasli\ValueObject\Number\Operation\Addition $mock */
+        $mock = static::getMock('Masthowasli\ValueObject\Number\Operation\Addition');
+
+        static::setExpectedException('\InvalidArgumentException');
+        static::assertEquals(new Integer(2), $this->integer->add($mock));
     }
 
-    public function testSubstration()
+    public function testSubtraction()
     {
-        $this->assertEquals(new Integer(0), $this->integer->subtract(new Integer(1)));
+        static::assertEquals(new Integer(0), $this->integer->subtract(new Integer(1)));
     }
 
     public function testSubtractionThrowsExceptionForNonIntegerArgument()
     {
-        $mock = $this->getMock('Masthowasli\ValueObject\Subtraction');
-        $this->setExpectedException('\InvalidArgumentException');
-        $this->assertEquals(new Integer(2), $this->integer->subtract($mock));
+        /** @var \Masthowasli\ValueObject\Number\Operation\Subtraction $mock */
+        $mock = static::getMock('Masthowasli\ValueObject\Number\Operation\Subtraction');
+
+        static::setExpectedException('\InvalidArgumentException');
+        static::assertEquals(new Integer(2), $this->integer->subtract($mock));
     }
 
     public function testMultiplication()
     {
-        $this->assertEquals(new Integer(5), $this->integer->multiply(new Integer(5)));
+        static::assertEquals(new Integer(5), $this->integer->multiply(new Integer(5)));
     }
 
     public function testMultiplicationThrowsExceptionForNonIntegerArgument()
     {
-        $mock = $this->getMock('Masthowasli\ValueObject\Multiplication');
-        $this->setExpectedException('\InvalidArgumentException');
-        $this->assertEquals(new Integer(2), $this->integer->multiply($mock));
+        /** @var \Masthowasli\ValueObject\Number\Operation\Multiplication $mock */
+        $mock = static::getMock('Masthowasli\ValueObject\Number\Operation\Multiplication');
+
+        static::setExpectedException('\InvalidArgumentException');
+        static::assertEquals(new Integer(2), $this->integer->multiply($mock));
     }
 
     public function testDivision()
     {
         $ten = new Integer(10);
-        $this->assertEquals(new Integer(2), $ten->divide(new Integer(5)));
-        $this->assertEquals(new Integer(3), $ten->divide(new Integer(3)));
+        static::assertEquals(new Integer(2), $ten->divide(new Integer(5)));
+        static::assertEquals(new Integer(3), $ten->divide(new Integer(3)));
     }
 
-    public function testRemainder()
+    public function testDivisionThrowsExceptionWhenDivisorIsZero()
     {
-        $seventeen = new Integer(17);
-        $this->assertEquals(new Integer(7), $seventeen->remainder(new Integer(10)));
-        $this->assertEquals(new Integer(7), $seventeen->remainder(new Integer(10)));
-        $this->assertEquals(new Integer(0), $seventeen->remainder(new Integer(17)));
-        $this->assertEquals(new Integer(1), $seventeen->remainder(new Integer(16)));
-        $this->assertEquals(new Integer(2), $seventeen->remainder(new Integer(15)));
-        $this->assertEquals(new Integer(3), $seventeen->remainder(new Integer(14)));
-        $this->assertEquals(new Integer(4), $seventeen->remainder(new Integer(13)));
-        $this->assertEquals(new Integer(5), $seventeen->remainder(new Integer(12)));
+        $this->setExpectedException('\Masthowasli\ValueObject\Exception\DivisionByZero');
+
+        $this->integer->divide(new Integer(0));
     }
+
+    /**
+     * @param \Masthowasli\ValueObject\Number\Integer $expected
+     * @param \Masthowasli\ValueObject\Number\Integer $divisor
+     *
+     * @dataProvider testRemainderDataProvider
+     */
+    public function testRemainder(Integer $expected, Integer $divisor)
+    {
+        $thirtyFour = new Integer(34);
+        static::assertEquals($expected, $thirtyFour->remainder($divisor));
+    }
+
+    public function testRemainderDataProvider()
+    {
+        return [
+            [new Integer(34), new Integer(36)],
+            [new Integer(34), new Integer(35)],
+            [new Integer(0), new Integer(34)],
+            [new Integer(1), new Integer(33)],
+            [new Integer(2), new Integer(32)],
+            [new Integer(3), new Integer(31)],
+            [new Integer(4), new Integer(30)],
+            [new Integer(5), new Integer(29)],
+            [new Integer(6), new Integer(28)],
+            [new Integer(7), new Integer(27)],
+            [new Integer(8), new Integer(26)],
+            [new Integer(9), new Integer(25)],
+            [new Integer(10), new Integer(24)],
+            [new Integer(11), new Integer(23)],
+            [new Integer(12), new Integer(22)],
+            [new Integer(13), new Integer(21)],
+            [new Integer(14), new Integer(20)],
+            [new Integer(15), new Integer(19)],
+            [new Integer(16), new Integer(18)],
+            [new Integer(0), new Integer(17)],
+            [new Integer(2), new Integer(16)],
+            [new Integer(4), new Integer(15)],
+            [new Integer(6), new Integer(14)],
+            [new Integer(8), new Integer(13)],
+            [new Integer(10), new Integer(12)],
+            [new Integer(1), new Integer(11)],
+            [new Integer(4), new Integer(10)],
+            [new Integer(7), new Integer(9)],
+            [new Integer(2), new Integer(8)],
+            [new Integer(6), new Integer(7)],
+            [new Integer(4), new Integer(6)],
+            [new Integer(4), new Integer(5)],
+            [new Integer(2), new Integer(4)],
+            [new Integer(1), new Integer(3)],
+            [new Integer(0), new Integer(2)],
+            [new Integer(0), new Integer(1)],
+            [new Integer(0), new Integer(-1)],
+            [new Integer(0), new Integer(-2)],
+            [new Integer(1), new Integer(-3)],
+        ];
+    }
+
+    public function testRemainderThrowsExceptionWhenDivisorIsZero()
+    {
+        $this->setExpectedException('\Masthowasli\ValueObject\Exception\DivisionByZero');
+
+        $this->integer->remainder(new Integer(0));
+    }
+
 }

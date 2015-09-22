@@ -50,60 +50,65 @@ class MoneyTest extends \PHPUnit_Framework_TestCase
 
     public function testEqualsReturnsTrue()
     {
-        $this->assertTrue($this->money->equals(new Money(new Integer(500), new Eur())));
+        static::assertTrue($this->money->equals(new Money(new Integer(500), new Eur())));
     }
 
     public function testEqualsReturnsFalseForNonMoneyArgument()
     {
-        $mock = $this->getMock('Masthowasli\ValueObject\Equatable');
+        /** @var \Masthowasli\ValueObject\Equatable $mock */
+        $mock = static::getMock('Masthowasli\ValueObject\Equatable');
 
-        $this->assertFalse($this->money->equals($mock));
+        static::assertFalse($this->money->equals($mock));
     }
 
-    public function testEqualsReturnsFalseForDiffentCurrencies()
+    public function testEqualsReturnsFalseForDifferentCurrencies()
     {
-        $mock = $this->getMock('Masthowasli\ValueObject\Monetary\Currency');
+        /** @var \Masthowasli\ValueObject\Monetary\Currency $mock */
+        $mock = static::getMock('Masthowasli\ValueObject\Monetary\Currency');
 
-        $this->assertFalse($this->money->equals(new Money(new Integer(500), $mock)));
+        static::assertFalse($this->money->equals(new Money(new Integer(500), $mock)));
     }
 
     public function testEqualsReturnsFalseForDifferentValues()
     {
-        $this->assertFalse($this->money->equals(new Money(new Integer(100), new Eur())));
+        static::assertFalse($this->money->equals(new Money(new Integer(100), new Eur())));
     }
 
     public function testCompareToReturnsNegativeForLargerArgumentValue()
     {
-        $this->assertLessThan(0, $this->money->compareTo(new Money(new Integer(1000), new Eur())));
+        static::assertLessThan(0, $this->money->compareTo(new Money(new Integer(1000), new Eur())));
     }
 
     public function testCompareToReturnsPositiveForSmallerArgumentValue()
     {
-        $this->assertGreaterThan(0, $this->money->compareTo(new Money(new Integer(100), new Eur())));
+        static::assertGreaterThan(0, $this->money->compareTo(new Money(new Integer(100), new Eur())));
     }
 
-    public function testCompareToReturnsZoreForEqualArgumentValue()
+    public function testCompareToReturnsZeroForEqualArgumentValue()
     {
-        $this->assertEquals(0, $this->money->compareTo(new Money(new Integer(500), new Eur())));
+        static::assertEquals(0, $this->money->compareTo(new Money(new Integer(500), new Eur())));
     }
 
     public function testCompareToThrowsAnExceptionForNonMoneyComparableInstance()
     {
-        $mock = $this->getMock('Masthowasli\ValueObject\Comparable');
-        $this->setExpectedException('\InvalidArgumentException');
-        $this->assertEquals(0, $this->money->compareTo($mock));
+        /** @var \Masthowasli\ValueObject\Comparable $mock */
+        $mock = static::getMock('Masthowasli\ValueObject\Comparable');
+
+        static::setExpectedException('\InvalidArgumentException');
+        static::assertEquals(0, $this->money->compareTo($mock));
     }
 
     public function testAddSuccess()
     {
-        $this->assertEquals(new Money(new Integer(1000), new Eur()), $this->money->add($this->money));
+        static::assertEquals(new Money(new Integer(1000), new Eur()), $this->money->add($this->money));
     }
 
     public function testAddThrowsAnInvalidArgumentExceptionForDifferentCurrencies()
     {
-        $this->setExpectedException('\InvalidArgumentException');
-        $mock = $this->getMock('Masthowasli\ValueObject\Monetary\Currency');
+        /** @var \Masthowasli\ValueObject\Monetary\Currency $mock */
+        $mock = static::getMock('Masthowasli\ValueObject\Monetary\Currency');
 
+        static::setExpectedException('\InvalidArgumentException');
         $this->money->add(new Money(new Integer(500), $mock));
     }
 }

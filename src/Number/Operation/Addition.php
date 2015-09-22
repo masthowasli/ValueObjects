@@ -1,6 +1,6 @@
 <?php
 /**
- * File of the Subtraction interface
+ * File of the Addition interface
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,10 +15,10 @@
  * @link       https://github.com/masthowasli/ValueObjects
  */
 
-namespace Masthowasli\ValueObject;
+namespace Masthowasli\ValueObject\Number\Operation;
 
 /**
- * Interface to define the subtract operation
+ * Interface to define the add operation
  *
  * @category   Masthowasli
  * @package    ValueObjects
@@ -26,14 +26,14 @@ namespace Masthowasli\ValueObject;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-interface Subtraction
+interface Addition
 {
     /**
-     * Subtracts the given value object from the implementing one
+     * Adds the given value object to the implementing one
      *
-     * @param Subtraction $valueObject The instance to subtract
+     * @param Addition $valueObject The value object to add
      *
-     * @return Subtraction Value object representing the difference
+     * @return Addition Value object representing the sum
      */
-    public function subtract(Subtraction $valueObject);
+    public function add(Addition $valueObject);
 }

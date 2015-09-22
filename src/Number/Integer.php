@@ -20,9 +20,12 @@ namespace Masthowasli\ValueObject\Number;
 
 use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
-use Masthowasli\ValueObject\Addition;
-use Masthowasli\ValueObject\Subtraction;
-use Masthowasli\ValueObject\Multiplication;
+use Masthowasli\ValueObject\Exception\DivisionByZero;
+use Masthowasli\ValueObject\Number\Operation\Addition;
+use Masthowasli\ValueObject\Number\Operation\Subtraction;
+use Masthowasli\ValueObject\Number\Operation\Multiplication;
+use Masthowasli\ValueObject\Number\Operation\Division;
+use Masthowasli\ValueObject\Number\Operation\IntegerDivision;
 
 /**
  * Class defining Integers
@@ -34,7 +37,7 @@ use Masthowasli\ValueObject\Multiplication;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-final class Integer implements Number
+final class Integer implements Number, IntegerDivision
 {
     /**
      * @var integer The encapsulated value
@@ -56,7 +59,7 @@ final class Integer implements Number
     /**
      * Performs an addition of the given Integer with the instance
      *
-     * @param \Masthowasli\ValueObject\Addition $other The Integer value object to add
+     * @param \Masthowasli\ValueObject\Number\Operation\Addition $other The Integer value object to add
      *
      * @throws \InvalidArgumentException
      *
@@ -74,7 +77,7 @@ final class Integer implements Number
     /**
      * Performs a subtraction of the given Integer with the instance
      *
-     * @param \Masthowasli\ValueObject\Subtraction $other The Integer value object to subtract
+     * @param \Masthowasli\ValueObject\Number\Operation\Subtraction $other The Integer value object to subtract
      *
      * @throws \InvalidArgumentException
      *
@@ -83,7 +86,7 @@ final class Integer implements Number
     public function subtract(Subtraction $other)
     {
         if (!$other instanceof Integer) {
-            throw new \InvalidArgumentException('Only Integer objects may be subtractred');
+            throw new \InvalidArgumentException('Only Integer objects may be subtracted');
         }
 
         return new Integer($this->value - $other->value);
@@ -92,7 +95,7 @@ final class Integer implements Number
     /**
      * Performs a multiplication of the given Integer with the instance
      *
-     * @param \Masthowasli\ValueObject\Multiplication $other The Integer value object to multiply
+     * @param \Masthowasli\ValueObject\Number\Operation\Multiplication $other The Integer value object to multiply
      *
      * @throws \InvalidArgumentException
      *
@@ -110,24 +113,30 @@ final class Integer implements Number
     /**
      * Performs an integer division of the given Integer with the instance
      *
-     * @param \Masthowasli\ValueObject\Number\Integer $other The Integer value object to divide by
+     * @param \Masthowasli\ValueObject\Number\Operation\Division $other The Integer value object to divide by
+     *
+     * @throws \Masthowasli\ValueObject\Exception\DivisionByZero
      *
      * @return Integer The value object representing the integer quotient
      */
-    public function divide(Integer $other)
+    public function divide(Division $other)
     {
+        $this->guardDivisorIsNotZero($other);
+
         return new Integer((int) floor($this->value / $other->value));
     }
 
     /**
      * Performs the remainder calculation of the integer division of the given Integer with the instance
      *
-     * @param \Masthowasli\ValueObject\Number\Integer $other The Integer value object to get the division remainder from
+     * @param \Masthowasli\ValueObject\Number\Operation\IntegerDivision $other The Integer value object to get the division remainder from
      *
      * @return Integer The remainder of the integer division
      */
-    public function remainder(Integer $other)
+    public function remainder(IntegerDivision $other)
     {
+        $this->guardDivisorIsNotZero($other);
+
         return new Integer($this->value % $other->value);
     }
 
@@ -177,6 +186,13 @@ final class Integer implements Number
             throw new \InvalidArgumentException(
                 'An Integer instance must be constructed with a scalar int value'
             );
+        }
+    }
+
+    private function guardDivisorIsNotZero(Integer $divisor)
+    {
+        if ($divisor->equals(new static(0))) {
+            throw new DivisionByZero();
         }
     }
 }

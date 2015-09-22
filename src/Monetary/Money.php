@@ -18,7 +18,7 @@
 
 namespace Masthowasli\ValueObject\Monetary;
 
-use Masthowasli\ValueObject\Addition;
+use Masthowasli\ValueObject\Number\Operation\Addition;
 use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
 use Masthowasli\ValueObject\Number\Integer;

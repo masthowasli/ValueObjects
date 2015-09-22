@@ -1,6 +1,6 @@
 <?php
 /**
- * File of the Subtraction interface
+ * File of the IntegerDivision interface
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -15,10 +15,10 @@
  * @link       https://github.com/masthowasli/ValueObjects
  */
 
-namespace Masthowasli\ValueObject;
+namespace Masthowasli\ValueObject\Number\Operation;
 
 /**
- * Interface to define the subtract operation
+ * Interface to define the divide operation for integers
  *
  * @category   Masthowasli
  * @package    ValueObjects
@@ -26,14 +26,14 @@ namespace Masthowasli\ValueObject;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-interface Multiplication
+interface IntegerDivision extends Division
 {
     /**
-     * Multiplies the given value object from the implementing one
+     * Divides the given value object from the implementing one
      *
-     * @param Multiplication $valueObject The instance to multiply
+     * @param IntegerDivision $valueObject The instance to divide by
      *
-     * @return Multiplication Value object representing the product
+     * @return Integer Integer value object representing the remainder
      */
-    public function multiply(Multiplication $valueObject);
+    public function remainder(IntegerDivision $valueObject);
 }
