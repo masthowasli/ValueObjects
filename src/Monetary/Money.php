@@ -18,10 +18,11 @@
 
 namespace Masthowasli\ValueObject\Monetary;
 
-use Masthowasli\ValueObject\Number\Operation\Addition;
 use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
 use Masthowasli\ValueObject\Number\Integer;
+use Masthowasli\ValueObject\Number\Operation\Addition;
+use Masthowasli\ValueObject\Number\Operation\Subtraction;
 
 /**
  * Class to define a monetary value
@@ -33,7 +34,7 @@ use Masthowasli\ValueObject\Number\Integer;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-final class Money implements Comparable, Equatable, Addition
+final class Money implements Comparable, Equatable, Addition, Subtraction
 {
     /**
      * @var Integer The monetary integer value
@@ -53,6 +54,47 @@ final class Money implements Comparable, Equatable, Addition
     {
         $this->value = $value;
         $this->currency = $currency;
+    }
+
+    /**
+     * Adds the given monetary value to this one
+     *
+     * @param Addition $other The monetary value to add
+     *
+     * @throws \InvalidArgumentException On different instanceof or currency
+     *
+     * @return Money The monetary representation of the addition
+     */
+    public function add(Addition $other)
+    {
+        if ($this->isComparable($other)) {
+            return new static($this->value->add($other->value), $this->currency);
+        }
+
+        throw new \InvalidArgumentException(
+            'Only monetary values with the same Currency can be added'
+        );
+    }
+
+
+    /**
+     * Subtracts the given monetary value to this one
+     *
+     * @param Subtraction $other The monetary value to add
+     *
+     * @throws \InvalidArgumentException On different instanceof or currency
+     *
+     * @return Money The monetary representation of the addition
+     */
+    public function subtract(Subtraction $other)
+    {
+        if ($this->isComparable($other)) {
+            return new static($this->value->subtract($other->value), $this->currency);
+        }
+
+        throw new \InvalidArgumentException(
+            'Only monetary values with the same Currency can be subtracted'
+        );
     }
 
     /**
@@ -89,26 +131,6 @@ final class Money implements Comparable, Equatable, Addition
         return $valueObject instanceof Money
             && $this->currency->equals($valueObject->currency)
             && $this->value->equals($valueObject->value);
-    }
-
-    /**
-     * Adds the given monetary value to this one
-     *
-     * @param Addition $other The monetary value to add
-     *
-     * @throws \InvalidArgumentException On different instanceof or currency
-     *
-     * @return Money The monetary representation of the addition
-     */
-    public function add(Addition $other)
-    {
-        if ($this->isComparable($other)) {
-            return new Money($this->value->add($other->value), $this->currency);
-        }
-
-        throw new \InvalidArgumentException(
-            'Only monetary values with the same Currency can be added'
-        );
     }
 
     private function isComparable($other)
