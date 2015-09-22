@@ -32,7 +32,14 @@ use Masthowasli\ValueObject\Monetary\Currency;
  */
 final class Eur extends Currency
 {
-    protected $iso4217 = 'EUR';
+    /**
+     * @{inheritdoc}
+     */
+    public function __construct()
+    {
+        $this->iso4217 = 'EUR';
+        $this->symbol = '€';
 
-    protected $symbol = '€';
+        parent::__construct();
+    }
 }

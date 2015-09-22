@@ -42,6 +42,15 @@ abstract class Currency implements Equatable
     protected $symbol;
 
     /**
+     * Instance of a new Currency is created
+     *
+     * The implementing class is responsible to set the properties
+     */
+    public function __construct()
+    {
+    }
+
+    /**
      * Whether the instance equals the given instance
      *
      * A type check must be performed in an implementing class
