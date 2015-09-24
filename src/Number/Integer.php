@@ -20,7 +20,7 @@ namespace Masthowasli\ValueObject\Number;
 
 use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
-use Masthowasli\ValueObject\Exception\DivisionByZero;
+use Masthowasli\ValueObject\Number\Exception\DivisionByZero;
 use Masthowasli\ValueObject\Number\Operation\Addition;
 use Masthowasli\ValueObject\Number\Operation\Subtraction;
 use Masthowasli\ValueObject\Number\Operation\Multiplication;
@@ -115,7 +115,7 @@ final class Integer implements Number, IntegerDivision
      *
      * @param \Masthowasli\ValueObject\Number\Operation\Division $other The Integer value object to divide by
      *
-     * @throws \Masthowasli\ValueObject\Exception\DivisionByZero
+     * @throws \Masthowasli\ValueObject\Number\Exception\DivisionByZero
      *
      * @return Integer The value object representing the integer quotient
      */

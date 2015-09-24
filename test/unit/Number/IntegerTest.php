@@ -79,7 +79,7 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
         static::assertTrue($this->integer->equals(new Integer(1)));
     }
 
-    public function testEqualsReturnsFalseForNonMoneyArgument()
+    public function testEqualsReturnsFalseForNonIntegerArgument()
     {
         /** @var \Masthowasli\ValueObject\Number\Number $mock */
         $mock = static::getMock('Masthowasli\ValueObject\Number\Number');
@@ -167,7 +167,7 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
 
     public function testDivisionThrowsExceptionWhenDivisorIsZero()
     {
-        $this->setExpectedException('\Masthowasli\ValueObject\Exception\DivisionByZero');
+        $this->setExpectedException('\Masthowasli\ValueObject\Number\Exception\DivisionByZero');
 
         $this->integer->divide(new Integer(0));
     }
@@ -231,7 +231,7 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
 
     public function testRemainderThrowsExceptionWhenDivisorIsZero()
     {
-        $this->setExpectedException('\Masthowasli\ValueObject\Exception\DivisionByZero');
+        $this->setExpectedException('\Masthowasli\ValueObject\Number\Exception\DivisionByZero');
 
         $this->integer->remainder(new Integer(0));
     }

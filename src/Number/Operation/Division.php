@@ -33,7 +33,7 @@ interface Division
      *
      * @param Division $valueObject The instance to divide by
      *
-     * @throws \Masthowasli\ValueObject\Exception\DivisionByZero
+     * @throws \Masthowasli\ValueObject\Number\Exception\DivisionByZero
      *
      * @return Integer Integer value object representing the result
      */

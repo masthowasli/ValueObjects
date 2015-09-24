@@ -16,7 +16,7 @@
  * @link       https://github.com/masthowasli/ValueObjects
  */
 
-namespace Masthowasli\ValueObject\Exception;
+namespace Masthowasli\ValueObject\Number\Exception;
 
 /**
  * Class for the division by zero exception

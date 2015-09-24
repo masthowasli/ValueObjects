@@ -22,6 +22,7 @@ use Masthowasli\ValueObject\Comparable;
 use Masthowasli\ValueObject\Equatable;
 use Masthowasli\ValueObject\Number\Integer;
 use Masthowasli\ValueObject\Number\Operation\Addition;
+use Masthowasli\ValueObject\Number\Operation\Multiplication;
 use Masthowasli\ValueObject\Number\Operation\Subtraction;
 
 /**
@@ -34,7 +35,7 @@ use Masthowasli\ValueObject\Number\Operation\Subtraction;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-final class Money implements Comparable, Equatable, Addition, Subtraction
+final class Money implements Comparable, Equatable, Addition, Subtraction, Multiplication
 {
     /**
      * @var Integer The monetary integer value
@@ -95,6 +96,11 @@ final class Money implements Comparable, Equatable, Addition, Subtraction
         throw new \InvalidArgumentException(
             'Only monetary values with the same Currency can be subtracted'
         );
+    }
+
+    public function multiply(Multiplication $factor)
+    {
+        return new static($this->value->multiply($factor), $this->currency);
     }
 
     /**

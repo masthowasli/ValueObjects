@@ -125,4 +125,9 @@ class MoneyTest extends \PHPUnit_Framework_TestCase
         static::setExpectedException('\InvalidArgumentException');
         $this->money->subtract(new Money(new Integer(500), $mock));
     }
+
+    public function testMultiplySuccess()
+    {
+        static::assertEquals(new Money(new Integer(2500), new Eur()), $this->money->multiply(new Integer(5)));
+    }
 }
