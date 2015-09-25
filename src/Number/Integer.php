@@ -165,11 +165,7 @@ final class Integer implements Number, IntegerDivision
             throw new \InvalidArgumentException('Only Integers can be compared to Integers');
         }
 
-        if ($this->value === $valueObject->value) {
-            return 0;
-        }
-
-        return $this->value < $valueObject->value ? -1 : 1;
+        return strnatcmp($this, $valueObject);
     }
 
     /**
