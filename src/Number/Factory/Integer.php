@@ -39,7 +39,8 @@ final class Integer
      *
      * @return \Masthowasli\ValueObject\Number\Integer
      */
-    public static function fromScalarInt($intValue) {
+    public static function fromScalarInt($intValue)
+    {
         return new \Masthowasli\ValueObject\Number\Integer($intValue);
     }
 
@@ -52,7 +53,8 @@ final class Integer
      *
      * @return \Masthowasli\ValueObject\Number\Integer
      */
-    public static function fromScalarFloat($floatValue) {
+    public static function fromScalarFloat($floatValue)
+    {
         if (!is_float($floatValue)) {
             throw new \InvalidArgumentException('Method must be invoked with a scalar float value');
         }

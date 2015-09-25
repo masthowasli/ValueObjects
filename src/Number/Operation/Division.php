@@ -35,7 +35,7 @@ interface Division
      *
      * @throws \Masthowasli\ValueObject\Number\Exception\DivisionByZero
      *
-     * @return Integer Integer value object representing the result
+     * @return Division Value object representing the result
      */
     public function divide(Division $valueObject);
 }

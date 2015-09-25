@@ -98,6 +98,13 @@ final class Money implements Comparable, Equatable, Addition, Subtraction, Multi
         );
     }
 
+    /**
+     * Multiplies the value with the given factor
+     *
+     * @param Multiplication $factor The value to multiply with
+     *
+     * @return Money The monetary value of the product
+     */
     public function multiply(Multiplication $factor)
     {
         return new static($this->value->multiply($factor), $this->currency);
