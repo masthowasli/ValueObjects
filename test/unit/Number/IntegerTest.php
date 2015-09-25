@@ -74,6 +74,11 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
         new Integer(true);
     }
 
+    public function testToString()
+    {
+        static::assertEquals('1', $this->integer);
+    }
+
     public function testEqualsReturnsTrue()
     {
         static::assertTrue($this->integer->equals(new Integer(1)));

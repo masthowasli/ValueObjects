@@ -57,6 +57,16 @@ final class Integer implements Number, IntegerDivision
     }
 
     /**
+     * Gives a textural representation of this value
+     *
+     * @return string The textual representation of the value
+     */
+    public function __toString()
+    {
+        return (string) $this->value;
+    }
+
+    /**
      * Performs an addition of the given Integer with the instance
      *
      * @param \Masthowasli\ValueObject\Number\Operation\Addition $other The Integer value object to add
