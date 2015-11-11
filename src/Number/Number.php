@@ -18,8 +18,6 @@
 
 namespace Masthowasli\ValueObject\Number;
 
-use Masthowasli\ValueObject\Comparable;
-use Masthowasli\ValueObject\Equatable;
 use Masthowasli\ValueObject\Number\Operation\Addition;
 use Masthowasli\ValueObject\Number\Operation\Subtraction;
 use Masthowasli\ValueObject\Number\Operation\Multiplication;
@@ -35,6 +33,6 @@ use Masthowasli\ValueObject\Number\Operation\Division;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-interface Number extends Comparable, Equatable, Addition, Subtraction, Multiplication, Division
+interface Number extends Addition, Subtraction, Multiplication, Division
 {
 }

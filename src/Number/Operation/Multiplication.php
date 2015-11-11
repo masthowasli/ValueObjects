@@ -17,6 +17,9 @@
 
 namespace Masthowasli\ValueObject\Number\Operation;
 
+use Masthowasli\ValueObject\Comparable;
+use Masthowasli\ValueObject\Equatable;
+
 /**
  * Interface to define the subtract operation
  *
@@ -26,7 +29,7 @@ namespace Masthowasli\ValueObject\Number\Operation;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-interface Multiplication
+interface Multiplication extends Comparable, Equatable
 {
     /**
      * Multiplies the given value object from the implementing one

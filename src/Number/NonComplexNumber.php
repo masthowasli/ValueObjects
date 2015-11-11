@@ -169,7 +169,7 @@ abstract class NonComplexNumber implements Number
 
     abstract protected function castScalarValue($value);
 
-    protected function guardDivisorIsNotZero(NonComplexNumber $divisor)
+    protected function guardDivisorIsNotZero(Division $divisor)
     {
         if ($divisor->equals(new static(0))) {
             throw new DivisionByZero();

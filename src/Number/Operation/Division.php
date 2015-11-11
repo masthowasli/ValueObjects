@@ -17,6 +17,9 @@
 
 namespace Masthowasli\ValueObject\Number\Operation;
 
+use Masthowasli\ValueObject\Comparable;
+use Masthowasli\ValueObject\Equatable;
+
 /**
  * Interface to define the divide operation
  *
@@ -26,7 +29,7 @@ namespace Masthowasli\ValueObject\Number\Operation;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-interface Division
+interface Division extends Comparable, Equatable
 {
     /**
      * Divides the given value object from the implementing one
