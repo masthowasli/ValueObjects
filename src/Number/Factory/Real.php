@@ -1,6 +1,6 @@
 <?php
 /**
- * File of the Integer factory class
+ * File of the Real factory class
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
@@ -19,10 +19,10 @@
 namespace Masthowasli\ValueObject\Number\Factory;
 
 use Masthowasli\ValueObject\Number\Integer as IntegerValue;
-use Masthowasli\ValueObject\Number\Real;
+use Masthowasli\ValueObject\Number\Real as RealValue;
 
 /**
- * Class defining Integers
+ * Class defining Real real numbers
  *
  * @category   Masthowasli
  * @package    ValueObjects
@@ -31,44 +31,43 @@ use Masthowasli\ValueObject\Number\Real;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-final class Integer
+final class Real
 {
     /**
-     * Creates an Integer from a scalar int value
+     * Creates an Real from a scalar int value
      *
      * @param integer $intValue
      *
      * @throws \InvalidArgumentException
      *
-     * @return \Masthowasli\ValueObject\Number\Integer
+     * @return \Masthowasli\ValueObject\Number\Real
      */
     public static function fromScalarInt($intValue)
     {
-        return new IntegerValue($intValue);
+        return new RealValue($intValue);
     }
 
     /**
-     * Creates an Integer from a scalar float value
+     * Creates an Real from a scalar float value
      *
      * @param float $floatValue
      *
      * @throws \InvalidArgumentException
      *
-     * @return \Masthowasli\ValueObject\Number\Integer
+     * @return \Masthowasli\ValueObject\Number\Real
      */
     public static function fromScalarFloat($floatValue)
     {
-        if (!is_float($floatValue)) {
-            throw new \InvalidArgumentException('Method must be invoked with a scalar float value');
-        }
-
-        $intValue = (int) round($floatValue);
-
-        return new IntegerValue($intValue);
+        return new RealValue($floatValue);
     }
 
-    public static function fromReal(Real $realValue)
+    /**
+     * @param \Masthowasli\ValueObject\Number\Integer $integerValue
+     *
+     * @return RealValue
+     */
+    public static function fromInteger(IntegerValue $integerValue)
     {
-        return new IntegerValue((int) ((string) $realValue));
+        return new RealValue((int) ((string) $integerValue));
     }
 }

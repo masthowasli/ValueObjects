@@ -18,12 +18,6 @@
 
 namespace Masthowasli\ValueObject\Number;
 
-use Masthowasli\ValueObject\Comparable;
-use Masthowasli\ValueObject\Equatable;
-use Masthowasli\ValueObject\Number\Exception\DivisionByZero;
-use Masthowasli\ValueObject\Number\Operation\Addition;
-use Masthowasli\ValueObject\Number\Operation\Subtraction;
-use Masthowasli\ValueObject\Number\Operation\Multiplication;
 use Masthowasli\ValueObject\Number\Operation\Division;
 use Masthowasli\ValueObject\Number\Operation\IntegerDivision;
 
@@ -37,25 +31,8 @@ use Masthowasli\ValueObject\Number\Operation\IntegerDivision;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-final class Integer implements Number, IntegerDivision
+final class Integer extends NonComplexNumber implements IntegerDivision
 {
-    /**
-     * @var integer The encapsulated value
-     */
-    private $value;
-
-    /**
-     * Instantiates an Integer
-     *
-     * @param int $value The value to represent
-     */
-    public function __construct($value)
-    {
-        $this->guardValueIsInteger($value);
-
-        $this->value = $value;
-    }
-
     /**
      * Gives a textural representation of this value
      *
@@ -64,60 +41,6 @@ final class Integer implements Number, IntegerDivision
     public function __toString()
     {
         return (string) $this->value;
-    }
-
-    /**
-     * Performs an addition of the given Integer with the instance
-     *
-     * @param \Masthowasli\ValueObject\Number\Operation\Addition $other The Integer value object to add
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return Integer The value object representing the added value
-     */
-    public function add(Addition $other)
-    {
-        if (!$other instanceof Integer) {
-            throw new \InvalidArgumentException('Only Integer objects may be added');
-        }
-
-        return new Integer($this->value + $other->value);
-    }
-
-    /**
-     * Performs a subtraction of the given Integer with the instance
-     *
-     * @param \Masthowasli\ValueObject\Number\Operation\Subtraction $other The Integer value object to subtract
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return Integer The value object representing the subtracted value
-     */
-    public function subtract(Subtraction $other)
-    {
-        if (!$other instanceof Integer) {
-            throw new \InvalidArgumentException('Only Integer objects may be subtracted');
-        }
-
-        return new Integer($this->value - $other->value);
-    }
-
-    /**
-     * Performs a multiplication of the given Integer with the instance
-     *
-     * @param \Masthowasli\ValueObject\Number\Operation\Multiplication $other The Integer value object to multiply
-     *
-     * @throws \InvalidArgumentException
-     *
-     * @return Integer The value object representing the multiplied value
-     */
-    public function multiply(Multiplication $other)
-    {
-        if (!$other instanceof Integer) {
-            throw new \InvalidArgumentException('Only Integer objects may be multiplied');
-        }
-
-        return new Integer($this->value * $other->value);
     }
 
     /**
@@ -149,44 +72,7 @@ final class Integer implements Number, IntegerDivision
 
         return new Integer($this->value % $other->value);
     }
-
-    /**
-     * Whether the instance is lower, equal or greater than the given one
-     *
-     * @param Comparable $valueObject The instance to compare to
-     *
-     * @throws \InvalidArgumentException On non Integer arguments
-     *
-     * @return integer <0 when lower, 0 on equality, >0 when greater
-     */
-    public function compareTo(Comparable $valueObject)
-    {
-        if (!$valueObject instanceof static) {
-            throw new \InvalidArgumentException('Only Integers can be compared to Integers');
-        }
-
-        return strnatcmp($this, $valueObject);
-    }
-
-    /**
-     * Whether the instance equals the given instance
-     *
-     * A type check must be performed in an implementing class
-     *
-     * @param Equatable $valueObject The instance to check against
-     *
-     * @return boolean Whether the two instances are equal
-     */
-    public function equals(Equatable $valueObject)
-    {
-        if (!$valueObject instanceof static) {
-            return false;
-        }
-
-        return $this->value === $valueObject->value;
-    }
-
-    private function guardValueIsInteger($value)
+    protected function guardConstructionValue($value)
     {
         if (!\is_int($value)) {
             throw new \InvalidArgumentException(
@@ -195,10 +81,8 @@ final class Integer implements Number, IntegerDivision
         }
     }
 
-    private function guardDivisorIsNotZero(Integer $divisor)
+    protected function castScalarValue($value)
     {
-        if ($divisor->equals(new static(0))) {
-            throw new DivisionByZero();
-        }
+        return (int) $value;
     }
 }

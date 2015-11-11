@@ -50,17 +50,17 @@ class EurTest extends \PHPUnit_Framework_TestCase
     {
         $other = new Eur();
 
-        $this->assertTrue($this->currency->equals($other));
+        static::assertTrue($this->currency->equals($other));
     }
 
     public function testEqualsReturnsFalse()
     {
         $mock = $this->getMock('Masthowasli\ValueObject\Monetary\Currency');
-        $this->assertFalse($this->currency->equals($mock));
+        static::assertFalse($this->currency->equals($mock));
     }
 
     public function testTextualRepresentation()
     {
-        $this->assertEquals('€', $this->currency->__toString());
+        static::assertEquals('€', (string) $this->currency);
     }
 }

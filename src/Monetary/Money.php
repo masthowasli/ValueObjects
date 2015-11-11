@@ -68,13 +68,9 @@ final class Money implements Comparable, Equatable, Addition, Subtraction, Multi
      */
     public function add(Addition $other)
     {
-        if ($this->isComparable($other)) {
-            return new static($this->value->add($other->value), $this->currency);
-        }
+        $this->guardComparability($other);
 
-        throw new \InvalidArgumentException(
-            'Only monetary values with the same Currency can be added'
-        );
+        return new static($this->value->add($other->value), $this->currency);
     }
 
 
@@ -89,19 +85,17 @@ final class Money implements Comparable, Equatable, Addition, Subtraction, Multi
      */
     public function subtract(Subtraction $other)
     {
-        if ($this->isComparable($other)) {
-            return new static($this->value->subtract($other->value), $this->currency);
-        }
+        $this->guardComparability($other);
 
-        throw new \InvalidArgumentException(
-            'Only monetary values with the same Currency can be subtracted'
-        );
+        return new static($this->value->subtract($other->value), $this->currency);
     }
 
     /**
      * Multiplies the value with the given factor
      *
      * @param Multiplication $factor The value to multiply with
+     *
+     * @throws \InvalidArgumentException
      *
      * @return Money The monetary value of the product
      */
@@ -121,13 +115,9 @@ final class Money implements Comparable, Equatable, Addition, Subtraction, Multi
      */
     public function compareTo(Comparable $other)
     {
-        if ($this->isComparable($other)) {
-            return $this->value->compareTo($other->value);
-        }
+        $this->guardComparability($other);
 
-        throw new \InvalidArgumentException(
-            'You can only compare Money instances one with another'
-        );
+        return $this->value->compareTo($other->value);
     }
 
     /**
@@ -150,5 +140,16 @@ final class Money implements Comparable, Equatable, Addition, Subtraction, Multi
     {
         return $other instanceof Money
             && $this->currency->equals($other->currency);
+    }
+
+    private function guardComparability(Comparable $other)
+    {
+        if ($this->isComparable($other)) {
+            return;
+        }
+
+        throw new \InvalidArgumentException(
+            'You can only compare Money instances one with another'
+        );
     }
 }

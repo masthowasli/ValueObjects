@@ -19,6 +19,8 @@
 namespace Masthowasli\ValueObject\Test\Number\Factory;
 
 use Masthowasli\ValueObject\Number\Factory\Integer;
+use Masthowasli\ValueObject\Number\Integer as IntegerValueObject;
+use Masthowasli\ValueObject\Number\Real as RealValueObject;
 
 /**
  * Tests the Money value object
@@ -34,9 +36,9 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
 {
     public function testFromScalarInt()
     {
-        static::assertEquals(new \Masthowasli\ValueObject\Number\Integer(1), Integer::fromScalarInt(1));
-        static::assertEquals(new \Masthowasli\ValueObject\Number\Integer(0), Integer::fromScalarInt(0));
-        static::assertEquals(new \Masthowasli\ValueObject\Number\Integer(-1), Integer::fromScalarInt(-1));
+        static::assertEquals(new IntegerValueObject(1), Integer::fromScalarInt(1));
+        static::assertEquals(new IntegerValueObject(0), Integer::fromScalarInt(0));
+        static::assertEquals(new IntegerValueObject(-1), Integer::fromScalarInt(-1));
     }
 
     /**
@@ -62,9 +64,16 @@ class IntegerTest extends \PHPUnit_Framework_TestCase
 
     public function testFromScalarFloat()
     {
-        static::assertEquals(new \Masthowasli\ValueObject\Number\Integer(1), Integer::fromScalarFloat(1.0));
-        static::assertEquals(new \Masthowasli\ValueObject\Number\Integer(0), Integer::fromScalarFloat(0.0));
-        static::assertEquals(new \Masthowasli\ValueObject\Number\Integer(-1), Integer::fromScalarFloat(-1.0));
+        static::assertEquals(new IntegerValueObject(1), Integer::fromScalarFloat(1.0));
+        static::assertEquals(new IntegerValueObject(0), Integer::fromScalarFloat(0.0));
+        static::assertEquals(new IntegerValueObject(-1), Integer::fromScalarFloat(-1.0));
+    }
+
+    public function testFromReal()
+    {
+        static::assertEquals(new IntegerValueObject(1), Integer::fromReal(new RealValueObject(1.0)));
+        static::assertEquals(new IntegerValueObject(0), Integer::fromReal(new RealValueObject(0.0)));
+        static::assertEquals(new IntegerValueObject(-1), Integer::fromReal(new RealValueObject(-1.0)));
     }
 
     /**
