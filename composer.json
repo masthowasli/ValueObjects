@@ -25,7 +25,11 @@
   },
   "autoload": {
     "psr-4": {
-      "Masthowasli\\ValueObject\\": "src",
+      "Masthowasli\\ValueObject\\": "src"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
       "Masthowasli\\ValueObject\\Test\\": "test/unit"
     }
   }
