@@ -56,7 +56,10 @@ final class Integer extends NonComplexNumber implements IntegerDivision
     {
         $this->guardDivisorIsNotZero($other);
 
-        return new Integer((int) floor($this->value / $other->value));
+        $newValue = clone $this;
+        $newValue->value = floor($newValue->value / $other->value);
+
+        return $newValue;
     }
 
     /**
@@ -70,8 +73,12 @@ final class Integer extends NonComplexNumber implements IntegerDivision
     {
         $this->guardDivisorIsNotZero($other);
 
-        return new Integer($this->value % $other->value);
+        $newValue = clone $this;
+        $newValue->value %= $other->value;
+
+        return $newValue;
     }
+
     protected function guardConstructionValue($value)
     {
         if (!\is_int($value)) {
