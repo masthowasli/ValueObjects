@@ -70,7 +70,10 @@ abstract class NonComplexNumber implements Number
             throw new \InvalidArgumentException('Only non complex numbers of the same type may be added');
         }
 
-        return new static($this->value + $other->value);
+        $newValue = clone $this;
+        $newValue->value += $other->value;
+
+        return $newValue;
     }
 
     /**
@@ -88,7 +91,10 @@ abstract class NonComplexNumber implements Number
             throw new \InvalidArgumentException('Only non complex numbers of the same type may be subtracted');
         }
 
-        return new static ($this->value - $other->value);
+        $newValue = clone $this;
+        $newValue->value -= $other->value;
+
+        return $newValue;
     }
 
     /**
@@ -106,7 +112,10 @@ abstract class NonComplexNumber implements Number
             throw new \InvalidArgumentException('Only non complex numbers of the same type may be multiplied');
         }
 
-        return new static($this->value * $other->value);
+        $newValue = clone $this;
+        $newValue->value *= $other->value;
+
+        return $newValue;
     }
 
     /**
@@ -122,7 +131,10 @@ abstract class NonComplexNumber implements Number
     {
         $this->guardDivisorIsNotZero($other);
 
-        return new static($this->value / $other->value);
+        $newValue = clone $this;
+        $newValue->value /= $other->value;
+
+        return $newValue;
     }
 
     /**
