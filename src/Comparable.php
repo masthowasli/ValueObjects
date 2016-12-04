@@ -1,16 +1,17 @@
 <?php
+declare(strict_types=1);
 /**
  * File of the Comparable interface
  *
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * PHP version 5.3.3
+ * PHP version 7.0
  *
  * @category   Masthowasli
  * @package    ValueObjects
  * @author     Thomas Sliwa <ts@unfinished.dyndns.org>
- * @copyright  2015 - Thomas Sliwa
+ * @copyright  2015-2016 - Thomas Sliwa
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
@@ -18,7 +19,7 @@
 namespace Masthowasli\ValueObject;
 
 /**
- * Interface to define a natural ordering
+ * Interfac e to define a natural ordering
  *
  * @category   Masthowasli
  * @package    ValueObjects
@@ -35,5 +36,5 @@ interface Comparable
      *
      * @return integer <0 when lower, 0 on equality, >0 when greater
      */
-    public function compareTo(Comparable $valueObject);
+    public function compareTo(Comparable $valueObject) : int;
 }
