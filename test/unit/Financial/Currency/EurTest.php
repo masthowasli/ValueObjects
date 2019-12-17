@@ -6,13 +6,13 @@ declare(strict_types=1);
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * PHP version 7.0
+ * PHP version 7.3
  *
  * @category   Masthowasli
  * @package    ValueObject
  * @subpackage Test
  * @author     Thomas Sliwa <ts@unfinished.dyndns.org>
- * @copyright  2015 - Thomas Sliwa
+ * @copyright  2015-2020 - Thomas Sliwa
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
@@ -22,6 +22,7 @@ namespace Masthowasli\ValueObject\Test\Financial\Currency;
 use Masthowasli\ValueObject\Financial\Currency;
 use Masthowasli\ValueObject\Financial\Currency\Eur;
 use Masthowasli\ValueObject\Financial\Currency\Usd;
+use PHPUnit\Framework\TestCase;
 
 /**
  * Tests the Eur currency value object
@@ -33,7 +34,7 @@ use Masthowasli\ValueObject\Financial\Currency\Usd;
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
-class EurTest extends \PHPUnit_Framework_TestCase
+class EurTest extends TestCase
 {
     /**
      * @var Currency
@@ -43,27 +44,27 @@ class EurTest extends \PHPUnit_Framework_TestCase
     /**
      * @{inheritdoc}
      */
-    protected function setup()
+    protected function setup(): void
     {
         $this->currency = new Eur();
     }
 
-    public function testEqualsReturnsTrue()
+    public function testEqualsReturnsTrue(): void
     {
         static::assertTrue($this->currency->equals(new Eur()));
     }
 
-    public function testEqualsReturnsFalse()
+    public function testEqualsReturnsFalse(): void
     {
         static::assertFalse($this->currency->equals(new Usd()));
     }
 
-    public function testTextualRepresentation()
+    public function testTextualRepresentation(): void
     {
         static::assertEquals('€', (string) $this->currency);
     }
 
-    public function testIso()
+    public function testIso(): void
     {
         static::assertEquals('EUR', $this->currency->iso());
     }

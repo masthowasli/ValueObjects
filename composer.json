@@ -10,7 +10,7 @@
     {
       "name": "Thomas Sliwa",
       "email": "ts@unfinished.dyndns.org",
-      "homepage": "https://masthowasli.github.com/"
+      "homepage": "https://masthowasli.github.io/"
     }
   ],
   "support": {
@@ -18,10 +18,10 @@
     "source": "https://github.com/masthowasliValueObjects"
   },
   "require": {
-    "php": ">=7.0"
+    "php": ">=7.3"
   },
   "require-dev": {
-    "phpunit/phpunit": "~5.0"
+    "phpunit/phpunit": "^8.0"
   },
   "autoload": {
     "psr-4": {

@@ -6,13 +6,13 @@ declare(strict_types=1);
  * For the full copyright and license information, please view the LICENSE
  * file that was distributed with this source code.
  *
- * PHP version 7.0
+ * PHP version 7.3
  *
  * @category   Masthowasli
  * @package    ValueObjects
  * @subpackage Financial
  * @author     Thomas Sliwa <ts@unfinished.dyndns.org>
- * @copyright  2015-2016 - Thomas Sliwa
+ * @copyright  2015-2020 - Thomas Sliwa
  * @license    http://opensource.org/licenses/MIT MIT
  * @link       https://github.com/masthowasli/ValueObjects
  */
@@ -127,7 +127,7 @@ final class Money implements Comparable, Equatable
      *
      * @return array Of the split money values
      */
-    public function split(int $leftProportion, int $rightProportion)
+    public function split(int $leftProportion, int $rightProportion): array
     {
         try {
             $leftValue = new Money(
@@ -161,7 +161,7 @@ final class Money implements Comparable, Equatable
      */
     public function compareTo(Comparable $other) : int
     {
-        if (!$other instanceof Money) {
+        if (!$other instanceof self) {
             MoneyException::nonMoneyValue($other);
         }
 
@@ -184,11 +184,15 @@ final class Money implements Comparable, Equatable
      */
     public function equals(Equatable $valueObject) : bool
     {
-        return $valueObject instanceof Money
+        return $valueObject instanceof self
             && $this->currency->equals($valueObject->currency)
             && $this->value === $valueObject->value;
     }
 
+    /**
+     * @param Money $other
+     * @throws MoneyException
+     */
     private function guardCurrencies(Money $other)
     {
         if (!$this->currency->equals($other->currency)) {

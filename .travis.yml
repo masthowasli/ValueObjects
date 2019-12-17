@@ -1,11 +1,7 @@
 language: php
 
 php:
-  - 7.0
-  - hhvm
-
-matrix:
-  allow_failures:
-    - php: hhvm
+  - 7.3
+  - 7.4
 
 install: composer install -o
